@@ -26,8 +26,7 @@ class sis_iv(object):
         self.t = datetime.datetime.now()
         self.ut = self.t.strftime("%Y%m%d-%H%M%S")
 
-
-    def vol_reader(q):
+    def vol_reader(self,q):
         while not rospy.is_shutdown():
             if self.vol_flag == 0:
                 time.sleep(0.1)
@@ -78,8 +77,9 @@ if __name__ == "__main__" :
     rospy.init_node("sis_iv_measure")
     iv = sis_iv()
     iv.start_thread()
-    iv.measure()
+
     rospy.spin()
+    iv.measure()
 
 """
 import rospy
