@@ -25,6 +25,7 @@ class sis_iv(object):
 
         self.t = datetime.datetime.now()
         self.ut = self.t.strftime("%Y%m%d-%H%M%S")
+        measure()
 
     def vol_switch(self,q):
         self.vol = q.data
@@ -84,7 +85,6 @@ if __name__ == "__main__" :
     rospy.init_node("sis_iv_measure")
     iv = sis_iv()
     iv.start_thread()
-    iv.measure()
     rospy.spin()
 
 
