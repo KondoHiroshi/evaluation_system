@@ -62,9 +62,6 @@ class sis_iv(object):
         y = self.cur_list
         plt.plot(x,y)
         plt.show()
-"""
-plt.savefig("SISIV_{0}.png".format(self.ut))
-"""
 
     def start_thread(self):
         th1 = threading.Thread(target=self.vol_reader)
