@@ -10,7 +10,6 @@ from std_msgs.msg import Float64
 from std_msgs.msg import String
 from std_msgs.msg import Int32
 
-
 class sis_iv(object):
     def __init__(self):
 
@@ -62,10 +61,10 @@ class sis_iv(object):
         x = self.vol_list
         y = self.cur_list
         plt.plot(x,y)
+        plt.show()
 """
         plt.savefig("SISIV_{0}.png".format(self.ut))
 """
-        plt.show()
 
     def start_thread(self):
         th1 = threading.Thread(target=self.vol_reader)
