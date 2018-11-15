@@ -27,20 +27,7 @@ class sis_iv(object):
         self.ut = self.t.strftime("%Y%m%d-%H%M%S")
 
 
-    def measure(self, initv=-10, interval=0.1, repeat=200):
-        self.vol_flag = 1
-        self.cur_flag = 1
-        for i in range(repeat+1):
-            vol = initv + interval*i
-            msg = Float64()
-            msg.data = vol
-            self.pub_vol.publish(vol)
-            time.sleep(0.1)
-        self.vol_flag = 0
-        self.cur_flag = 0
-        self.iv_plot()
-
-    def vol_reader(self,q):
+    def vol_reader(q):
         while not rospy.is_shutdown():
             if self.vol_flag == 0:
                 time.sleep(0.1)
@@ -55,6 +42,19 @@ class sis_iv(object):
                 continue
             self.cur_list.append(q.data)
             continue
+
+    def measure(self, initv=-10, interval=0.1, repeat=200):
+        self.vol_flag = 1
+        self.cur_flag = 1
+        for i in range(repeat+1):
+            vol = initv + interval*i
+            msg = Float64()
+            msg.data = vol
+            self.pub_vol.publish(vol)
+            time.sleep(0.1)
+        self.vol_flag = 0
+        self.cur_flag = 0
+        self.iv_plot()
 
     def iv_plot(self):
         plt.title("SIS-IV")
