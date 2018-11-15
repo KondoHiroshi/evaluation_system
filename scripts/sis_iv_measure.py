@@ -23,7 +23,7 @@ class sis_iv(object):
         self.cur_flag = 0
 
         self.t = datetime.datetime.now()
-        self.ut = t.strftime("%Y%m%d-%H%M%S")
+        self.ut = self.t.strftime("%Y%m%d-%H%M%S")
 
 
     def measure(self, initv=-10, interval=0.1, repeat=200):
