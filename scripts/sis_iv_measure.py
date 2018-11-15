@@ -63,7 +63,7 @@ class sis_iv(object):
         plt.plot(x,y)
         plt.show()
 """
-        plt.savefig("SISIV_{0}.png".format(self.ut))
+plt.savefig("SISIV_{0}.png".format(self.ut))
 """
 
     def start_thread(self):
