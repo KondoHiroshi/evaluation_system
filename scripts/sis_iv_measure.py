@@ -14,8 +14,8 @@ class sis_iv(object):
     def __init__(self):
 
         self.pub_vol = rospy.Publisher("sis_vol_cmd", Float64, queue_size=1)
-        rospy.Subscriber("sis_vol", Float64, self.vol_reader)
-        rospy.Subscriber("sis_cur", Float64, self.cur_reader)
+        rospy.Subscriber("sis_vol", Float64, self.vol_switch)
+        rospy.Subscriber("sis_cur", Float64, self.cur_switch)
 
         self.vol_list = []
         self.cur_list = []
