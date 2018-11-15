@@ -31,7 +31,8 @@ class sis_iv(object):
             if self.vol_flag == 0:
                 time.sleep(0.1)
                 continue
-            self.vol_list.append(q.data)
+            else :
+                self.vol_list.append(q.data)
             continue
 
     def cur_reader(self,q):
