@@ -43,6 +43,7 @@ class sis_iv(object):
     def vol_reader(self,q):
         while not rospy.is_shutdown():
             if self.vol_flag == 0:
+                time.sleep(0.1)
                 continue
             self.vol_list.append(q.data)
             continue
@@ -50,6 +51,7 @@ class sis_iv(object):
     def cur_reader(self,q):
         while not rospy.is_shutdown():
             if self.vol_flag == 0:
+                time.sleep(0.1)
                 continue
             self.cur_list.append(q.data)
             continue
