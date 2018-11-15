@@ -5,6 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 import rospy
+print("a")
 import std_msgs
 from std_msgs.msg import Float64
 from std_msgs.msg import String
