@@ -25,7 +25,7 @@ class sis_iv(object):
 
         self.t = datetime.datetime.now()
         self.ut = self.t.strftime("%Y%m%d-%H%M%S")
-        measure()
+        self.iv.measure()
 
     def vol_switch(self,q):
         self.vol = q.data
