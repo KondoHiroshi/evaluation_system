@@ -62,6 +62,7 @@ class sis_iv(object):
         self.iv_plot()
 
     def iv_plot(self):
+        print("a")
         plt.title("SIS-IV")
         plt.xlabel("vol[mV]")
         plt.ylabel("cur[uA]")
