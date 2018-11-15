@@ -31,6 +31,7 @@ class sis_iv(object):
 
     def cur_switch(self,q):
         self.cur = q.data
+        self.measure()
 
     def vol_reader(self):
         while not rospy.is_shutdown():
