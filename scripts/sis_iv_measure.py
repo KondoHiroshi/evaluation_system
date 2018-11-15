@@ -44,14 +44,14 @@ class sis_iv(object):
         while not rospy.is_shutdown():
             if self.vol_flag == 0:
                 continue
-            self.vol_list.append(q)
+            self.vol_list.append(q.data)
             continue
 
     def cur_reader(self,q):
         while not rospy.is_shutdown():
             if self.vol_flag == 0:
                 continue
-            self.cur_list.append(q)
+            self.cur_list.append(q.data)
             continue
 
     def iv_plot(self):
