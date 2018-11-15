@@ -1,11 +1,9 @@
 #! /usr/bin/env python3
-
+import rospy
 import os, sys, time ,datetime
 import numpy as np
 import matplotlib.pyplot as plt
 
-import rospy
-print("a")
 import std_msgs
 from std_msgs.msg import Float64
 from std_msgs.msg import String
