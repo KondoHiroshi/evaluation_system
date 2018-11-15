@@ -26,21 +26,26 @@ class sis_iv(object):
         self.t = datetime.datetime.now()
         self.ut = self.t.strftime("%Y%m%d-%H%M%S")
 
-    def vol_reader(self,q):
+    def vol_switch(self,q):
+        self.vol = q.data
+
+    def cur_switch(self,q):
+        self.cur = q.data
+
+    def vol_reader(self):
         while not rospy.is_shutdown():
             if self.vol_flag == 0:
                 time.sleep(0.1)
                 continue
-            else :
-                self.vol_list.append(q.data)
+            self.vol_list.append(self.vol)
             continue
 
-    def cur_reader(self,q):
+    def cur_reader(self):
         while not rospy.is_shutdown():
             if self.vol_flag == 0:
                 time.sleep(0.1)
                 continue
-            self.cur_list.append(q.data)
+            self.cur_list.append(self.cur)
             continue
 
     def measure(self, initv=-10, interval=0.1, repeat=200):
@@ -78,7 +83,6 @@ if __name__ == "__main__" :
     rospy.init_node("sis_iv_measure")
     iv = sis_iv()
     iv.start_thread()
-
     rospy.spin()
     iv.measure()
 
