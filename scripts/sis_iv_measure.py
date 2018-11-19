@@ -18,7 +18,7 @@ class sis_iv(object):
 
         self.pub_vol = rospy.Publisher("sis_vol_cmd", Float64, queue_size=1)
 
-        reader = iv_readear.iv_readear()
+        self.reader = iv_readear.iv_readear()
 
         self.t = datetime.datetime.now()
         self.ut = self.t.strftime("%Y%m%d-%H%M%S")
