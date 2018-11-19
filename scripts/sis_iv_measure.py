@@ -46,7 +46,8 @@ class sis_iv(object):
             if self.vol_flag == 0:
                 time.sleep(0.1)
                 continue
-            self.cur_list.append(self.cur)
+            cur = self.cur
+            self.cur_list.append(cur)
             continue
 
     def measure(self, initv=-10, interval=0.1, repeat=200):
