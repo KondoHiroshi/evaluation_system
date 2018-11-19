@@ -9,6 +9,7 @@ from std_msgs.msg import Float64
 from std_msgs.msg import String
 from std_msgs.msg import Int32
 
+sys.path.append("/home/amigos/ros/src/evaluation_system/scripts")
 import iv_readear
 
 class sis_iv(object):
