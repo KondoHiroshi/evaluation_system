@@ -8,7 +8,7 @@ from std_msgs.msg import String
 from std_msgs.msg import Int32
 
 
-class iv_readear(objevt):
+class iv_readear(object):
     def __init__(self):
         rospy.Subscriber("sis_vol", Float64, self.vol_switch)
         rospy.Subscriber("sis_cur", Float64, self.cur_switch)
