@@ -53,24 +53,4 @@ if __name__ == "__main__" :
     rospy.init_node("sis_iv_measure")
     reader = iv_reader.iv_reader()
     iv = sis_iv()
-    iv.measure()
-
-
-
-"""
-import rospy
-import std_msgs
-import time
-from std_msgs.msg import Float64
-rospy.init_node("test")
-initv=-10
-interval=0.1
-repeat=200
-pub_vol = rospy.Publisher("sis_vol_cmd", Float64, queue_size=1)
-for i in range(repeat+1):
-    vol = initv + interval*i
-    msg = Float64()
-    msg.data = vol
-    pub_vol.publish(vol)
-    time.sleep(0.1)
-"""
+    sys.exit(iv.measure())
