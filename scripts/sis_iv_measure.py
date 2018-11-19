@@ -48,24 +48,6 @@ class sis_iv(object):
         plt.savefig("sis_iv_{0}.png".format(ut))
 
 
-class iv_readear(object):
-    def __init__(self):
-        rospy.Subscriber("sis_vol", Float64, self.vol_switch)
-        rospy.Subscriber("sis_cur", Float64, self.cur_switch)
-
-    def vol_switch(self,q):
-        self.vol = q.data
-
-    def cur_switch(self,q):
-        self.cur = q.data
-
-    def iv_readear(self):
-        ad = []
-        ad.append(self.vol)
-        ad.append(self.cur)
-        return da
-
-
 if __name__ == "__main__" :
     rospy.init_node("sis_iv_measure")
     reader = iv_reader.iv_reader()
