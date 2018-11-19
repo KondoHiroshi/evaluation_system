@@ -47,7 +47,7 @@ class sis_iv(object):
         plt.ylabel("cur[uA]")
         iv = np.loadtxt("sis_iv_{0}.txt".format(ut))
         plt.plot(iv[:,0], iv[:,1], linestyle='solid', marker=None, color="red")
-        plt.savefig("sis_iv_{0}.png".format(ut))
+        plt.savefig("sis_iv_{0}.png".format(self.ut))
 
 
 if __name__ == "__main__" :
