@@ -88,8 +88,9 @@ if __name__ == "__main__" :
     rospy.init_node("sis_iv_measure")
     iv = sis_iv()
     iv.start_thread()
-    iv.measure()
     rospy.spin()
+    iv.measure()
+
 
 
 
