@@ -61,6 +61,8 @@ class sis_iv(object):
         self.vol_flag = 0
         self.cur_flag = 0
         self.iv_plot()
+        plt.savefig("test_{0}.png".format(ut))
+        plt.show()
 
     def iv_plot(self):
         print("a")
