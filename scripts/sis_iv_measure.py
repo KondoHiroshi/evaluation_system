@@ -66,7 +66,7 @@ class iv_readear(object):
 
 if __name__ == "__main__" :
     rospy.init_node("sis_iv_measure")
-    reader = iv_readear.iv_readear()
+    reader = iv_reader.iv_reader()
     iv = sis_iv()
     iv.measure()
 
