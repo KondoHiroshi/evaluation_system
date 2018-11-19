@@ -48,7 +48,7 @@ class sis_iv(object):
         iv = np.loadtxt("sis_iv_{0}.txt".format(self.ut))
         plt.plot(iv[:,0], iv[:,1], linestyle='solid', marker=None, color="red")
         plt.savefig("sis_iv_{0}.png".format(self.ut))
-
+        plt.show()
 
 if __name__ == "__main__" :
     rospy.init_node("sis_iv_measure")
