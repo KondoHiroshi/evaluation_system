@@ -35,6 +35,7 @@ class sis_iv(object):
             da.append(ret[0])
             da.append(ret[1])
             da_all.append(da)
+            print("a")
             np.savetxt("sis_iv_{0}.txt".format(self.ut), np.array(da_all), delimiter=" ")
 
 
