@@ -35,7 +35,7 @@ class sis_iv(object):
             da.append(ret[0])
             da.append(ret[1])
             da_all.append(da)
-            numpy.savetxt("sis_iv_{0}.txt".format(ut), numpy.array(da_ll), delimiter=" ")
+            np.savetxt("sis_iv_{0}.txt".format(ut), np.array(da_ll), delimiter=" ")
 
 
     def iv_plot(self):
@@ -43,7 +43,7 @@ class sis_iv(object):
         plt.title("SIS-IV")
         plt.xlabel("vol[mV]")
         plt.ylabel("cur[uA]")
-        iv = numpy.loadtxt("sis_iv_{0}.txt".format(ut))
+        iv = np.loadtxt("sis_iv_{0}.txt".format(ut))
         plt.plot(iv[:,0], iv[:,1], linestyle='solid', marker=None, color="red")
         plt.savefig("sis_iv_{0}.png".format(ut))
 
