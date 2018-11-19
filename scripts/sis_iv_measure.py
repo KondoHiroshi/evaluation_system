@@ -12,6 +12,7 @@ from std_msgs.msg import Int32
 sys.path.append("/home/amigos/ros/src/evaluation_system/scripts")
 import iv_reader
 
+os.chdir("/home/amigos/")
 
 class sis_iv(object):
     def __init__(self):
