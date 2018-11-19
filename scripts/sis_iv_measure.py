@@ -8,10 +8,10 @@ import std_msgs
 from std_msgs.msg import Float64
 from std_msgs.msg import String
 from std_msgs.msg import Int32
-"""
+
 sys.path.append("/home/amigos/ros/src/evaluation_system/scripts")
-from . import iv_readear"
-"""
+from . import iv_reader"
+
 
 class sis_iv(object):
     def __init__(self):
@@ -31,7 +31,7 @@ class sis_iv(object):
             msg.data = vol
             self.pub_vol.publish(vol)
             time.sleep(0.1)
-            ret = read.iv_readear()
+            ret = reader.iv_readear()
             da.append(ret[0])
             da.append(ret[1])
             da_all.append(da)
@@ -52,7 +52,6 @@ class iv_readear(object):
     def __init__(self):
         rospy.Subscriber("sis_vol", Float64, self.vol_switch)
         rospy.Subscriber("sis_cur", Float64, self.cur_switch)
-        rospy.spin()
 
     def vol_switch(self,q):
         self.vol = q.data
@@ -70,10 +69,7 @@ class iv_readear(object):
 if __name__ == "__main__" :
     rospy.init_node("sis_iv_measure")
     iv = sis_iv()
-    read = iv_readear()
     iv.measure()
-
-
 
 
 
