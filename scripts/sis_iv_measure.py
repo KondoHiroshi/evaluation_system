@@ -18,8 +18,6 @@ class sis_iv(object):
 
         self.pub_vol = rospy.Publisher("sis_vol_cmd", Float64, queue_size=1)
 
-        self.reader = iv_readear.iv_readear()
-
         self.t = datetime.datetime.now()
         self.ut = self.t.strftime("%Y%m%d-%H%M%S")
 
@@ -68,6 +66,7 @@ class iv_readear(object):
 
 if __name__ == "__main__" :
     rospy.init_node("sis_iv_measure")
+    reader = iv_readear.iv_readear()
     iv = sis_iv()
     iv.measure()
 
