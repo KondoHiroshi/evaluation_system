@@ -31,7 +31,6 @@ class sis_iv(object):
 
     def cur_switch(self,q):
         self.cur = q.data
-        self.measure()
 
     def vol_reader(self):
         while not rospy.is_shutdown():
@@ -87,6 +86,7 @@ if __name__ == "__main__" :
     rospy.init_node("sis_iv_measure")
     iv = sis_iv()
     iv.start_thread()
+    iv.measure()
     rospy.spin()
 
 
