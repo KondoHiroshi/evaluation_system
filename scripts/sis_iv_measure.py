@@ -31,7 +31,7 @@ class sis_iv(object):
             msg = Float64()
             msg.data = vol
             self.pub_vol.publish(vol)
-            time.sleep(0.1)
+            time.sleep(0.01)
             ret = reader.iv_reader()
             da.append(ret[0])
             da.append(ret[1])
@@ -41,10 +41,9 @@ class sis_iv(object):
         iv.iv_plot()
 
     def iv_plot(self):
-        print("a")
         plt.title("SIS-IV")
-        plt.xlabel("vol[mV]")
-        plt.ylabel("cur[uA]")
+        plt.xlabel("V[mV]")
+        plt.ylabel("I[uA]")
         iv = np.loadtxt("sis_iv_{0}.txt".format(self.ut))
         plt.plot(iv[:,0], iv[:,1], linestyle='solid', marker=None, color="red")
         plt.savefig("sis_iv_{0}.png".format(self.ut))
