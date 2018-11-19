@@ -4,86 +4,46 @@ import os, sys, time ,datetime
 import numpy as np
 import matplotlib.pyplot as plt
 
-import threading
 import std_msgs
 from std_msgs.msg import Float64
 from std_msgs.msg import String
 from std_msgs.msg import Int32
 
+import iv_readear
+
 class sis_iv(object):
     def __init__(self):
 
         self.pub_vol = rospy.Publisher("sis_vol_cmd", Float64, queue_size=1)
-        rospy.Subscriber("sis_vol", Float64, self.vol_switch)
-        rospy.Subscriber("sis_cur", Float64, self.cur_switch)
 
-        self.vol_list = []
-        self.cur_list = []
-
-        self.vol_flag = 0
-        self.cur_flag = 0
+        reader = iv_readear.iv_readear
 
         self.t = datetime.datetime.now()
         self.ut = self.t.strftime("%Y%m%d-%H%M%S")
 
-        rospy.spin()
-
-    def vol_switch(self,q):
-        self.vol = q.data
-
-    def cur_switch(self,q):
-        self.cur = q.data
-
-    def vol_reader(self):
-        while not rospy.is_shutdown():
-            if self.vol_flag == 0:
-                time.sleep(0.1)
-                continue
-            vol = self.vol
-            self.vol_list.append(vol)
-            continue
-
-    def cur_reader(self):
-        while not rospy.is_shutdown():
-            if self.vol_flag == 0:
-                time.sleep(0.1)
-                continue
-            cur = self.cur
-            self.cur_list.append(cur)
-            continue
-
     def measure(self, initv=-10, interval=0.1, repeat=200):
-        self.vol_flag = 1
-        self.cur_flag = 1
         for i in range(repeat+1):
+            da = []
             vol = initv + interval*i
             msg = Float64()
             msg.data = vol
             self.pub_vol.publish(vol)
             time.sleep(0.1)
-        self.vol_flag = 0
-        self.cur_flag = 0
-        self.iv_plot()
+            ret = reader.iv_readear()
+            da.append(ret[0])
+            da.append(ret[1])
+            da_all.append(da)
+            numpy.savetxt("sis_iv_{0}.txt".format(ut), numpy.array(da_ll), delimiter=" ")
+
 
     def iv_plot(self):
         print("a")
         plt.title("SIS-IV")
         plt.xlabel("vol[mV]")
         plt.ylabel("cur[uA]")
-        x = self.vol_list
-        y = self.cur_list
-        plt.plot(x,y)
-        plt.show()
-        plt.savefig("test_{0}.png".format(ut))
-
-
-    def start_thread(self):
-        th1 = threading.Thread(target=self.vol_reader)
-        th1.setDaemon(True)
-        th1.start()
-        th2 = threading.Thread(target=self.cur_reader)
-        th2.setDaemon(True)
-        th2.start()
+        iv = numpy.loadtxt("sis_iv_{0}.txt".format(ut))
+        plt.plot(iv[:,0], iv[:,1], linestyle='solid', marker=None, color="red")
+        plt.savefig("sis_iv_{0}.png".format(ut))
 
 
 if __name__ == "__main__" :
