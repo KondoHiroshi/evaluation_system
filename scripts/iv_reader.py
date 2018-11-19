@@ -23,7 +23,7 @@ class iv_reader(object):
         ad = []
         ad.append(self.vol)
         ad.append(self.cur)
-        return da
+        return ad
 
 if __name__ == "__main__" :
     rospy.init_node("iv_reader")
