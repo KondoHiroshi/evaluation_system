@@ -8,7 +8,7 @@ from std_msgs.msg import String
 from std_msgs.msg import Int32
 
 
-class iv_readear(object):
+class iv_reader(object):
     def __init__(self):
         rospy.Subscriber("sis_vol", Float64, self.vol_switch)
         rospy.Subscriber("sis_cur", Float64, self.cur_switch)
@@ -19,12 +19,12 @@ class iv_readear(object):
     def cur_switch(self,q):
         self.cur = q.data
 
-    def iv_readear(self):
+    def iv_reader(self):
         ad = []
         ad.append(self.vol)
         ad.append(self.cur)
         return da
 
 if __name__ == "__main__" :
-    rospy.init_node("iv_readear")
+    rospy.init_node("iv_reader")
     rospy.spin()
