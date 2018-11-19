@@ -29,7 +29,7 @@ class sis_iv(object):
             msg.data = vol
             self.pub_vol.publish(vol)
             time.sleep(0.1)
-            ret = reader.iv_readear()
+            ret = reader.iv_reader()
             da.append(ret[0])
             da.append(ret[1])
             da_all.append(da)
