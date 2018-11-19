@@ -21,7 +21,9 @@ class sis_iv(object):
         self.t = datetime.datetime.now()
         self.ut = self.t.strftime("%Y%m%d-%H%M%S")
 
+
     def measure(self, initv=-10, interval=0.1, repeat=200):
+        da_all = []
         for i in range(repeat+1):
             da = []
             vol = initv + interval*i
