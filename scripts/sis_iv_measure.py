@@ -26,6 +26,8 @@ class sis_iv(object):
         self.t = datetime.datetime.now()
         self.ut = self.t.strftime("%Y%m%d-%H%M%S")
 
+        rospy.spin()
+
     def vol_switch(self,q):
         self.vol = q.data
 
@@ -62,8 +64,6 @@ class sis_iv(object):
         self.vol_flag = 0
         self.cur_flag = 0
         self.iv_plot()
-        plt.savefig("test_{0}.png".format(ut))
-        plt.show()
 
     def iv_plot(self):
         print("a")
@@ -74,6 +74,8 @@ class sis_iv(object):
         y = self.cur_list
         plt.plot(x,y)
         plt.show()
+        plt.savefig("test_{0}.png".format(ut))
+
 
     def start_thread(self):
         th1 = threading.Thread(target=self.vol_reader)
@@ -88,7 +90,6 @@ if __name__ == "__main__" :
     rospy.init_node("sis_iv_measure")
     iv = sis_iv()
     iv.start_thread()
-    rospy.spin()
     iv.measure()
 
 
