@@ -10,7 +10,7 @@ from std_msgs.msg import String
 from std_msgs.msg import Int32
 
 sys.path.append("/home/amigos/ros/src/evaluation_system/scripts")
-from . import iv_reader"
+from . import iv_reader
 
 
 class sis_iv(object):
