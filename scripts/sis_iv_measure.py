@@ -37,9 +37,8 @@ class sis_iv(object):
             da.append(ret[1])
             print(da)
             da_all.append(da)
-            print("a")
             np.savetxt("sis_iv_{0}.txt".format(self.ut), np.array(da_all), delimiter=" ")
-            print("b")
+            iv.iv_plot()
 
     def iv_plot(self):
         print("a")
