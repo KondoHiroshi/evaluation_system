@@ -27,7 +27,7 @@ class sis_iv(object):
 
         repeat = (int(lastv)-int(initv))/float(interval)
 
-    def measure(self, initv=, interval, repeat):
+    def measure(self, initv, interval, repeat):
         da_all = []
         for i in range(repeat+1):
             da = []
