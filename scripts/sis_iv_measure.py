@@ -55,5 +55,5 @@ if __name__ == "__main__" :
     initv = int(input("start_voltage = ? [mV]"))
     lastv = int(input("finish_voltage = ? [mV]"))
     interval = float(input("interval_voltage = ? [mV]"))
-    repeat = int(lastv-initv)/interval)
+    repeat = int((lastv-initv)/interval)
     sys.exit(iv.measure(initv,interval,repeat))
