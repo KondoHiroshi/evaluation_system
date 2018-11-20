@@ -54,4 +54,4 @@ if __name__ == "__main__" :
     initv = input("start_voltage = ? [mV]")
     lastv = input("finish_voltage = ? [mV]")
     interval = input("interval_voltage = ? [mV]")
-    sys.exit(iv.measure(initv,last,interval))
+    sys.exit(iv.measure(initv,lastv,interval))
