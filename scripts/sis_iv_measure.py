@@ -31,7 +31,7 @@ class sis_iv(object):
             msg = Float64()
             msg.data = vol
             self.pub_vol.publish(vol)
-            time.sleep(0.05)
+            time.sleep(0.1)
             ret = reader.iv_reader()
             da.append(ret[0])
             da.append(ret[1])
