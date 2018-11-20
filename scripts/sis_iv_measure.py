@@ -21,13 +21,8 @@ class sis_iv(object):
 
         self.t = datetime.datetime.now()
         self.ut = self.t.strftime("%Y%m%d-%H%M%S")
-        initv = input("start_voltage = ? [mV]")
-        lastv = input("finish_voltage = ? [mV]")
-        interval = input("interval_voltage = ? [mV]")
 
-        repeat = (int(lastv)-int(initv))/float(interval)
-
-    def measure(self, initv, interval, repeat):
+    def measure(self, initv=initv, interval=interval, repeat=repeat):
         da_all = []
         for i in range(repeat+1):
             da = []
@@ -57,4 +52,8 @@ if __name__ == "__main__" :
     rospy.init_node("sis_iv_measure")
     reader = sis_reader.sis_reader()
     iv = sis_iv()
+    initv = input("start_voltage = ? [mV]")
+    lastv = input("finish_voltage = ? [mV]")
+    interval = input("interval_voltage = ? [mV]")
+    repeat = (int(lastv)-int(initv))/float(interval)
     sys.exit(iv.measure())
