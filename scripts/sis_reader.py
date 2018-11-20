@@ -8,7 +8,7 @@ from std_msgs.msg import String
 from std_msgs.msg import Int32
 
 
-class iv_reader(object):
+class sis_reader(object):
     def __init__(self):
         rospy.Subscriber("sis_vol", Float64, self.vol_switch)
         rospy.Subscriber("sis_cur", Float64, self.cur_switch)
@@ -24,6 +24,9 @@ class iv_reader(object):
         ad.append(self.vol)
         ad.append(self.cur)
         return ad
+
+    def all_reader(self):
+
 
 if __name__ == "__main__" :
     rospy.init_node("iv_reader")

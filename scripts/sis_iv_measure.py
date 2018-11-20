@@ -10,7 +10,7 @@ from std_msgs.msg import String
 from std_msgs.msg import Int32
 
 sys.path.append("/home/amigos/ros/src/evaluation_system/scripts")
-import iv_reader
+import sis_reader
 
 os.chdir("/home/amigos/")
 
@@ -51,6 +51,6 @@ class sis_iv(object):
 
 if __name__ == "__main__" :
     rospy.init_node("sis_iv_measure")
-    reader = iv_reader.iv_reader()
+    reader = sis_reader.sis_reader()
     iv = sis_iv()
     sys.exit(iv.measure())
