@@ -26,7 +26,7 @@ class sis_reader(object):
         return ad
 
     def all_reader(self):
-
+        ad = []
 
 if __name__ == "__main__" :
     rospy.init_node("iv_reader")
