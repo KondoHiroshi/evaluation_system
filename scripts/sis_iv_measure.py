@@ -22,7 +22,7 @@ class sis_iv(object):
         self.t = datetime.datetime.now()
         self.ut = self.t.strftime("%Y%m%d-%H%M%S")
 
-    def measure(self, initv=initv, interval=interval, repeat=repeat):
+    def measure(self, initv, interval, repeat):
         da_all = []
         for i in range(repeat+1):
             da = []
@@ -56,4 +56,4 @@ if __name__ == "__main__" :
     lastv = input("finish_voltage = ? [mV]")
     interval = input("interval_voltage = ? [mV]")
     repeat = (int(lastv)-int(initv))/float(interval)
-    sys.exit(iv.measure())
+    sys.exit(iv.measure(initv,interval,repeat))
