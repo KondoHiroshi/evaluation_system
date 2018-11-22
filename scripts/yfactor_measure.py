@@ -61,7 +61,7 @@ class yfactor(object):
 
 if __name__ == "__main__" :
     rospy.init_node("yfactor_measure")
-    reader = reader.piv_reader()
+    reader = reader.reader()
     yf = yfactor()
     initv = int(input("start_voltage = ? [mV]"))
     lastv = int(input("finish_voltage = ? [mV]"))
