@@ -18,7 +18,7 @@ class yfactor(object):
     def __init__(self):
 
         self.pub_vol = rospy.Publisher("sis_vol_cmd", Float64, queue_size=1)
-        self.pub_speed = rospy.publisher("chopper_spd",Int64, queue_size=1)
+        self.pub_speed = rospy.Publisher("chopper_spd",Int64, queue_size=1)
         self.t = datetime.datetime.now()
         self.ut = self.t.strftime("%Y%m%d-%H%M%S")
 
