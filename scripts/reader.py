@@ -34,6 +34,7 @@ class reader(object):
         ad.append(self.vol)
         ad.append(self.cur)
         ad.append(self.power)
+        return ad
 
 if __name__ == "__main__" :
     rospy.init_node("reader")
