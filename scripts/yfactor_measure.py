@@ -10,11 +10,11 @@ from std_msgs.msg import String
 from std_msgs.msg import Int32
 
 sys.path.append("/home/amigos/ros/src/evaluation_system/scripts")
-import reader
+import sis_reader
 
 os.chdir("/home/amigos/")
 
-class sis_iv(object):
+class yfactor(object):
     def __init__(self):
 
         self.pub_vol = rospy.Publisher("sis_vol_cmd", Float64, queue_size=1)
@@ -31,29 +31,32 @@ class sis_iv(object):
             msg.data = vol
             self.pub_vol.publish(vol)
             time.sleep(0.1)
-            ret = reader.iv_reader()
+            ret = reader.piv_reader()
             da.append(ret[0])
             da.append(ret[1])
+            de.append(ret[2])
             print(da)
             da_all.append(da)
-            np.savetxt("sis_iv_{0}.txt".format(self.ut), np.array(da_all), delimiter=" ")
-        iv.iv_plot()
+            np.savetxt("yfactor_{0}.txt".format(self.ut), np.array(da_all), delimiter=" ")
+        yf.pv_iv_plot()
 
-    def iv_plot(self):
-        plt.title("SIS-IV")
+    def pv_iv_plot(self):
+        plt.title("yfactor-PV-IV")
         plt.xlabel("V[mV]")
         plt.ylabel("I[uA]")
-        iv = np.loadtxt("sis_iv_{0}.txt".format(self.ut))
+        plt.ylabel("P[dBm]")
+        piv = np.loadtxt("yfactor_{0}.txt".format(self.ut))
         plt.plot(iv[:,0], iv[:,1], linestyle='solid', marker=None, color="red")
-        plt.savefig("sis_iv_{0}.png".format(self.ut))
+        plt.plot(iv[:,0], iv[:,2], linestyle='solid', marker=None, color="brue")
+        plt.savefig("yfactor_{0}.png".format(self.ut))
         plt.show()
 
 if __name__ == "__main__" :
-    rospy.init_node("sis_iv_measure")
-    reader = reader.reader()
-    iv = sis_iv()
+    rospy.init_node("yfactor_measure")
+    reader = sis_reader.piv_reader()
+    yf = yfactor()
     initv = int(input("start_voltage = ? [mV]"))
     lastv = int(input("finish_voltage = ? [mV]"))
     interval = float(input("interval_voltage = ? [mV]"))
     repeat = int((lastv-initv)/interval)
-    sys.exit(iv.measure(initv,interval,repeat))
+    sys.exit(yf.measure(initv,interval,repeat))
