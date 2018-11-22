@@ -54,8 +54,8 @@ class yfactor(object):
         piv = np.loadtxt("yfactor_{0}.txt".format(self.ut))
         fig ,ax1 = plt.subplots()
         ax2 = ax1.twinx()
-        ax1.plot(iv[:,0], iv[:,1],linestyle='solid', marker=None, color="red")
-        ax2.plot(iv[:,0], iv[:,2],linestyle='solid', marker=None, color="brue")
+        ax1.plot(piv[:,0], piv[:,1],linestyle='solid', marker=None, color="red")
+        ax2.plot(piv[:,0], piv[:,2],linestyle='solid', marker=None, color="brue")
         plt.savefig("yfactor_{0}.png".format(self.ut))
         plt.show()
 
