@@ -10,7 +10,7 @@ from std_msgs.msg import String
 from std_msgs.msg import Int32
 
 sys.path.append("/home/amigos/ros/src/evaluation_system/scripts")
-import sis_reader
+import reader
 
 os.chdir("/home/amigos/")
 
@@ -18,12 +18,16 @@ class yfactor(object):
     def __init__(self):
 
         self.pub_vol = rospy.Publisher("sis_vol_cmd", Float64, queue_size=1)
-
+        self.pub_speed = rospy.publisher("chopper_spd",Int64, queue_size=1)
         self.t = datetime.datetime.now()
         self.ut = self.t.strftime("%Y%m%d-%H%M%S")
 
     def measure(self, initv, interval, repeat):
         da_all = []
+        speed = 5000
+        msg = Int64()
+        msg.data = speed
+        self.pub_speed.publish(speed)
         for i in range(repeat+1):
             da = []
             vol = initv+interval*i
@@ -38,16 +42,20 @@ class yfactor(object):
             print(da)
             da_all.append(da)
             np.savetxt("yfactor_{0}.txt".format(self.ut), np.array(da_all), delimiter=" ")
+        speed = 0
+        msg = Int64()
+        msg.data = speed
+        self.pub_speed.publish(speed)
         yf.pv_iv_plot()
 
     def pv_iv_plot(self):
         plt.title("yfactor-PV-IV")
         plt.xlabel("V[mV]")
-        plt.ylabel("I[uA]")
-        plt.ylabel("P[dBm]")
         piv = np.loadtxt("yfactor_{0}.txt".format(self.ut))
-        plt.plot(iv[:,0], iv[:,1], linestyle='solid', marker=None, color="red")
-        plt.plot(iv[:,0], iv[:,2], linestyle='solid', marker=None, color="brue")
+        fig ,ax1 = plt.subplots()
+        ax2 = ax1.twinx()
+        ax1.plot(iv[:,0], iv[:,1],linestyle='solid', marker=None, color="red")
+        ax2.plot(iv[:,0], iv[:,2],linestyle='solid', marker=None, color="brue")
         plt.savefig("yfactor_{0}.png".format(self.ut))
         plt.show()
 
