@@ -46,7 +46,7 @@ class yfactor(object):
         msg = Int64()
         msg.data = speed
         self.pub_speed.publish(speed)
-        yf.pv_iv_plot()
+        yf.pv_plot()
 
     def pv_iv_plot(self):
         plt.title("yfactor-PV-IV")
@@ -58,6 +58,16 @@ class yfactor(object):
         ax2.plot(piv[:,0], piv[:,2],linestyle='solid', marker=None, color="blue")
         plt.savefig("yfactor_{0}.png".format(self.ut))
         plt.show()
+
+    def pv_plot(self):
+        plt.title("PV")
+        plt.xlabel("V[mV]")
+        plt.ylabel("P[dBm]")
+        iv = np.loadtxt("yfactor_{0}.txt".format(self.ut))
+        plt.plot(iv[:,0], iv[:,2], linestyle='solid', marker=None, color="red")
+        plt.savefig("yfactor_{0}.png".format(self.ut))
+        plt.show()
+
 
 if __name__ == "__main__" :
     rospy.init_node("yfactor_measure")
