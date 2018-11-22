@@ -38,7 +38,7 @@ class yfactor(object):
             ret = reader.piv_reader()
             da.append(ret[0])
             da.append(ret[1])
-            de.append(ret[2])
+            da.append(ret[2])
             print(da)
             da_all.append(da)
             np.savetxt("yfactor_{0}.txt".format(self.ut), np.array(da_all), delimiter=" ")
