@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import std_msgs
 from std_msgs.msg import Float64
 from std_msgs.msg import String
-from std_msgs.msg import Int32
+from std_msgs.msg import Int64
 
 sys.path.append("/home/amigos/ros/src/evaluation_system/scripts")
 import reader
