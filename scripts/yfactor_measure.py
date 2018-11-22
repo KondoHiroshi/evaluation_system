@@ -46,7 +46,7 @@ class yfactor(object):
         msg = Int64()
         msg.data = speed
         self.pub_speed.publish(speed)
-        yf.pv_plot()
+        yf.pv_iv_plot()
 
     def pv_iv_plot(self):
         plt.title("yfactor-PV-IV")
