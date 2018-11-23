@@ -39,7 +39,7 @@ class sis_iv(object):
             np.savetxt("sis_iv_{0}.txt".format(self.ut), np.array(da_all), delimiter=" ")
         iv.iv_plot()
 
-    def iv_plot(self):
+    def _iv_plot(self):
         plt.title("SIS-IV")
         plt.xlabel("V[mV]")
         plt.ylabel("I[uA]")
@@ -47,6 +47,18 @@ class sis_iv(object):
         plt.plot(iv[:,0], iv[:,1], linestyle='solid', marker=None, color="red")
         plt.savefig("sis_iv_{0}.png".format(self.ut))
         plt.show()
+
+    def iv_plot(self):
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+        iv = np.loadtxt("sis_iv_{0}.txt".format(self.ut))
+        ax.plot(iv[:,0], iv[:,1], linestyle='solid', marker=None, color="red")
+        ax.set_xlabel("voltage[mV]")
+        ax.set_ylabel("current[uA]")
+        ax.grid(True)
+        ax.savefig("sis_iv_{0}.png".format(self.ut))
+        ax.show()
+
 
 if __name__ == "__main__" :
     rospy.init_node("sis_iv_measure")
