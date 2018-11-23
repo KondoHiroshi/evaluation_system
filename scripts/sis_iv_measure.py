@@ -52,7 +52,7 @@ class sis_iv(object):
         fig = plt.figure()
         ax = fig.add_subplot(111)
         iv = np.loadtxt("sis_iv_{0}.txt".format(self.ut))
-        ax.plot(iv[:,0], iv[:,1], linestyle='solid', marker=None, color="red")
+        ax.scatter(iv[:,0], iv[:,1], linestyle='solid', marker=None, color="red")
         ax.set_xlabel("voltage[mV]")
         ax.set_ylabel("current[uA]")
         ax.grid(True)
