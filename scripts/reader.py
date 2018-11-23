@@ -29,12 +29,6 @@ class reader(object):
         ad.append(self.cur)
         return ad
 
-    def pv_reader(self):
-        ad = []
-        ad.append(self.vol)
-        ad.append(self.power)
-        return ad
-
     def piv_reader(self):
         ad = []
         ad.append(self.vol)
