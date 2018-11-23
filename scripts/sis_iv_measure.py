@@ -56,8 +56,8 @@ class sis_iv(object):
         ax.set_xlabel("voltage[mV]")
         ax.set_ylabel("current[uA]")
         ax.grid(True)
-        ax.savefig("sis_iv_{0}.png".format(self.ut))
-        ax.show()
+        plt.savefig("sis_iv_{0}.png".format(self.ut))
+        plt.show()
 
 
 if __name__ == "__main__" :
