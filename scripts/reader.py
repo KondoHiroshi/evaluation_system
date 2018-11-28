@@ -26,7 +26,6 @@ class reader(object):
     def iv_reader(self):
         ad = []
         ad.append(self.vol)
-        time.sleep(0.001)
         ad.append(self.cur)
         return ad
 
