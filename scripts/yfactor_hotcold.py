@@ -81,7 +81,7 @@ class yfactor(object):
 
 
 if __name__ == "__main__" :
-    rospy.init_node("yfactor_measure")
+    rospy.init_node("yfactor_hotcold")
     reader = reader.reader()
     yf = yfactor()
     initv = int(input("start_voltage = ? [mV]"))
