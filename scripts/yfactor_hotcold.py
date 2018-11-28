@@ -71,7 +71,7 @@ class yfactor(object):
         ax1.set_ylabel("current[uA]")
         ax2.set_ylabel("power[dBm]")
         ax1.legend(loc='upper left')
-        ax2.legend(loc='upper left')
+        ax2.legend(loc='upper right')
         plt.savefig("yfactor_{0}.png".format(self.ut))
         plt.show()
 
