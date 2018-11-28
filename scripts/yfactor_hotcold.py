@@ -30,7 +30,7 @@ class yfactor(object):
             msg = Float64()
             msg.data = vol
             self.pub_vol.publish(vol)
-            time.sleep(3)
+            time.sleep(0.1)
             ret = reader.piv_reader()
             da.append(ret[0])
             da.append(ret[1])
