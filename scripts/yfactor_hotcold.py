@@ -12,7 +12,7 @@ from std_msgs.msg import Int64
 sys.path.append("/home/amigos/ros/src/evaluation_system/scripts")
 import reader
 
-os.chdir("/home/amigos/")
+os.chdir("/home/amigos/DSB")
 
 class yfactor(object):
     def __init__(self):
@@ -22,12 +22,8 @@ class yfactor(object):
         self.t = datetime.datetime.now()
         self.ut = self.t.strftime("%Y%m%d-%H%M%S")
 
-    def measure(self, initv, interval, repeat):
+    def measure_hot(self, initv, interval, repeat):
         da_all = []
-        speed = 5000
-        msg = Int64()
-        msg.data = speed
-        self.pub_speed.publish(speed)
         for i in range(repeat+1):
             da = []
             vol = initv+interval*i
@@ -41,21 +37,36 @@ class yfactor(object):
             da.append(ret[2])
             print(da)
             da_all.append(da)
-            np.savetxt("yfactor_{0}.txt".format(self.ut), np.array(da_all), delimiter=" ")
-        speed = 0
-        msg = Int64()
-        msg.data = speed
-        self.pub_speed.publish(speed)
-        yf.pv_iv_plot()
+            np.savetxt("yfactor_hot_{0}.txt".format(self.ut), np.array(da_all), delimiter=" ")
+
+    def measure_cold(self, initv, interval, repeat):
+        da_all = []
+        for i in range(repeat+1):
+            da = []
+            vol = initv+interval*i
+            msg = Float64()
+            msg.data = vol
+            self.pub_vol.publish(vol)
+            time.sleep(3)
+            ret = reader.piv_reader()
+            da.append(ret[0])
+            da.append(ret[1])
+            da.append(ret[2])
+            print(da)
+            da_all.append(da)
+            np.savetxt("yfactor_cold_{0}.txt".format(self.ut), np.array(da_all), delimiter=" ")
 
     def pv_iv_plot(self):
         plt.title("yfactor-PV-IV")
         plt.xlabel("V[mV]")
-        piv = np.loadtxt("yfactor_{0}.txt".format(self.ut))
+        hot = np.loadtxt("yfactor_hot_{0}.txt".format(self.ut))
+        cold = np.loadtxt("yfactor_cold_{0}.txt".format(self.ut))
         fig ,ax1 = plt.subplots()
         ax2 = ax1.twinx()
-        ax1.plot(piv[:,0], piv[:,1],linestyle='solid', marker=None, color="red")
-        ax2.plot(piv[:,0], piv[:,2],linestyle='solid', marker=None, color="blue")
+        ax3 = ax1.twinx()
+        ax1.plot(hot[:,0], hot[:,1],linestyle='solid', marker=None, color="red")
+        ax2.plot(hot[:,0], hot[:,2],linestyle='solid', marker=None, color="blue")
+        ax3.plot(cold[:,0], cold[:,2],linestyle='solid', marker=None, color="green")
         plt.savefig("yfactor_{0}.png".format(self.ut))
         plt.show()
 
@@ -77,4 +88,8 @@ if __name__ == "__main__" :
     lastv = int(input("finish_voltage = ? [mV]"))
     interval = float(input("interval_voltage = ? [mV]"))
     repeat = int((lastv-initv)/interval)
-    sys.exit(yf.measure(initv,interval,repeat))
+    input("Are you ready hot measurement?")
+    yf.measure_hot(initv,interval,repeat))
+    input("Are you ready cold measurement?")
+    yf.measure_cold(initv,interval,repeat))
+    yf.pv_iv_plot()
