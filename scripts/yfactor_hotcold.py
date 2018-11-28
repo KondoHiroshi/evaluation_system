@@ -62,10 +62,9 @@ class yfactor(object):
         cold = np.loadtxt("yfactor_cold_{0}.txt".format(self.ut))
         fig ,ax1 = plt.subplots()
         ax2 = ax1.twinx()
-        ax3 = ax1.twinx()
         ax1.scatter(hot[:,0], hot[:,1],linestyle='solid', marker=None, color="red")
         ax2.scatter(hot[:,0], hot[:,2],linestyle='solid', marker=None, color="blue")
-        ax3.scatter(cold[:,0], cold[:,2],linestyle='solid', marker=None, color="green")
+        ax2.scatter(cold[:,0], cold[:,2],linestyle='solid', marker=None, color="green")
         plt.savefig("yfactor_{0}.png".format(self.ut))
         plt.show()
 
