@@ -71,3 +71,6 @@ if __name__ == "__main__" :
     interval = float(input("interval_voltage = ? [mV]"))
     repeat = int((lastv-initv)/interval)
     sys.exit(iv.measure(initv,interval,repeat))
+
+#20181129
+#written by H.Kondo
