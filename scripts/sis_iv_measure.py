@@ -34,11 +34,9 @@ class sis_iv(object):
             ret = reader.iv_reader()
             da.append(ret[0])
             da.append(ret[1])
-            time.sleep(0.1)
             print(da)
             da_all.append(da)
             np.savetxt("sis_iv_{0}.txt".format(self.ut), np.array(da_all), delimiter=" ")
-            time.sleep(0.1)
         iv.iv_plot()
 
     def _iv_plot(self):
