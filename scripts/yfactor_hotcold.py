@@ -90,4 +90,7 @@ if __name__ == "__main__" :
     yf.measure_hot(initv,interval,repeat)
     input("Are you ready cold measurement?")
     yf.measure_cold(initv,interval,repeat)
-    yf.pv_iv_plot()
+    sys.exit(yf.pv_iv_plot())
+
+#20181129
+#written by H.Kondo
