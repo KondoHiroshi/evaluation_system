@@ -32,11 +32,13 @@ class yfactor(object):
             self.pub_vol.publish(vol)
             time.sleep(0.1)
             ret = reader.piv_reader()
+            time.sleep(0.01)
             da.append(ret[0])
             da.append(ret[1])
             da.append(ret[2])
             print(da)
             da_all.append(da)
+            time.sleep(0.01)
             np.savetxt("yfactor_hot_{0}.txt".format(self.ut), np.array(da_all), delimiter=" ")
 
     def measure_cold(self, initv, interval, repeat):
@@ -66,6 +68,7 @@ class yfactor(object):
         ax2.scatter(cold[:,0], cold[:,2],linestyle='solid', marker=None, color="green")
         ax1.set_title("yfactor_Hot_Cold_measurement")
         ax1.set_xlabel("voltage[mV]")
+        ax2.set_ylabel("current[uA]")
         ax2.set_ylabel("power[dBm]")
         plt.savefig("yfactor_{0}.png".format(self.ut))
         plt.show()
