@@ -32,6 +32,7 @@ class sis_iv(object):
             self.pub_vol.publish(vol)
             time.sleep(0.1)
             ret = reader.iv_reader()
+            time.sleep(0.01)
             da.append(ret[0])
             da.append(ret[1])
             print(da)
