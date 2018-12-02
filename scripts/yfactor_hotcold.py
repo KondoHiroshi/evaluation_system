@@ -85,9 +85,11 @@ if __name__ == "__main__" :
     lastv = int(input("finish_voltage = ? [mV]"))
     interval = float(input("interval_voltage = ? [mV]"))
     repeat = int((lastv-initv)/interval)
-    input("Are you ready HOT measurement?")
+    input("Are you ready HOT measurement?\n Press enter")
+    print("Measuring HOT")
     yf.measure_hot(initv,interval,repeat)
-    input("Are you ready COLD measurement?")
+    input("Are you ready COLD measurement?\n Press enter")
+    print("Measuring COLD")
     yf.measure_cold(initv,interval,repeat)
     sys.exit(yf.pv_iv_plot())
 
