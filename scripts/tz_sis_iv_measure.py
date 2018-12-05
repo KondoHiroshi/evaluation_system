@@ -87,6 +87,7 @@ class sis_iv(object):
         plt.title("SIS-IV_ch4")
         plt.grid(True)
 
+        plt.subplots_adjust(wspace=0.4, hspace=0.6)
         plt.savefig("sis_iv_{0}.png".format(self.ut))
         plt.show()
 
