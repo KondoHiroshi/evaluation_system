@@ -66,7 +66,6 @@ class sis_iv(object):
         plt.title("SIS-IV_ch1")
         plt.grid(True)
 
-        plt.figure()
         plt.subplot(222)
         plt.scatter(iv[:,2], iv[:,3], marker="o", color="red")
         plt.xlabel("voltage[mV]")
@@ -74,7 +73,6 @@ class sis_iv(object):
         plt.title("SIS-IV_ch2")
         plt.grid(True)
 
-        plt.figure()
         plt.subplot(223)
         plt.scatter(iv[:,4], iv[:,5], marker="o", color="red")
         plt.xlabel("voltage[mV]")
@@ -82,7 +80,6 @@ class sis_iv(object):
         plt.title("SIS-IV_ch3")
         plt.grid(True)
 
-        plt.figure()
         plt.subplot(224)
         plt.scatter(iv[:,6], iv[:,7], marker="o", color="red")
         plt.xlabel("voltage[mV]")
