@@ -92,6 +92,8 @@ class yfactor(object):
         ax4.set_ylabel("power[dBm]")
         ax4.legend(loc='upper right')
 
+        plt.subplots_adjust(wspace=0.4, hspace=0.6)
+
         plt.savefig("yfactor_{0}.png".format(self.ut))
         plt.show()
 
