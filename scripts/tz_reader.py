@@ -49,10 +49,10 @@ class reader(object):
     def ch4_cur_switch(self,q):
         self.ch4_cur = q.data
 
-    def ch_1_power_switch(self,q):
+    def ch1_power_switch(self,q):
         self.ch1_power = q.data
 
-    def ch_2_power_switch(self,q):
+    def ch2_power_switch(self,q):
         self.ch2_power = q.data
 
 ###reader###
