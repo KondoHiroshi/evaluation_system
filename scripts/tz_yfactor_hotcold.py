@@ -10,14 +10,15 @@ from std_msgs.msg import String
 from std_msgs.msg import Int64
 
 sys.path.append("/home/amigos/ros/src/evaluation_system/scripts")
-import reader
+import tz_reader
 
-os.chdir("/home/amigos/DSB")
+os.chdir("/home/amigos/TZ")
 
 class yfactor(object):
     def __init__(self):
 
-        self.pub_vol = rospy.Publisher("sis_vol_cmd", Float64, queue_size=1)
+        self.pub_vol_ch1 = rospy.Publisher("sis_vol_cmd_ch1", Float64, queue_size=1)
+        self.pub_vol_ch2 = rospy.Publisher("sis_vol_cmd_ch2", Float64, queue_size=1)
         self.t = datetime.datetime.now()
         self.ut = self.t.strftime("%Y%m%d-%H%M%S")
 
@@ -28,13 +29,17 @@ class yfactor(object):
             vol = initv+interval*i
             msg = Float64()
             msg.data = vol
-            self.pub_vol.publish(vol)
+            self.pub_vol_ch1.publish(vol)
+            self.pub_vol_ch2.publish(vol)
             time.sleep(0.1)
             ret = reader.piv_reader()
             time.sleep(0.01)
             da.append(ret[0])
             da.append(ret[1])
             da.append(ret[2])
+            da.appemd(ret[3])
+            da.append(ret[4])
+            da.appemd(ret[5])
             print(da)
             da_all.append(da)
             time.sleep(0.01)
@@ -54,6 +59,9 @@ class yfactor(object):
             da.append(ret[0])
             da.append(ret[1])
             da.append(ret[2])
+            da.appemd(ret[3])
+            da.append(ret[4])
+            da.appemd(ret[5])
             print(da)
             da_all.append(da)
             time.sleep(0.01)
@@ -62,16 +70,27 @@ class yfactor(object):
     def pv_iv_plot(self):
         hot = np.loadtxt("yfactor_hot_{0}.txt".format(self.ut))
         cold = np.loadtxt("yfactor_cold_{0}.txt".format(self.ut))
-        fig ,ax1 = plt.subplots()
+        fig ,(ax1,ax3) = plt.subplots()
         ax2 = ax1.twinx()
-        ax1.scatter(hot[:,0], hot[:,1],linestyle='solid', marker=".", color="green" ,label='I-V')
-        ax2.scatter(hot[:,0], hot[:,2],linestyle='solid', marker=".", color="red", label='HOT')
-        ax2.scatter(cold[:,0], cold[:,2],linestyle='solid', marker=".", color="blue", label='COLD')
-        ax1.set_title("yfactor_Hot_Cold_measurement")
+        ax1.plot(hot[:,0], hot[:,1],linestyle='solid', marker=".", color="green" ,label='I-V')
+        ax2.plot(hot[:,0], hot[:,2],linestyle='solid', marker=".", color="red", label='HOT')
+        ax2.plot(cold[:,0], cold[:,2],linestyle='solid', marker=".", color="blue", label='COLD')
+        ax1.set_title("yfactor_Hot_Cold_measurement_ch1")
         ax1.set_xlabel("voltage[mV]")
         ax1.set_ylabel("current[uA]")
         ax2.set_ylabel("power[dBm]")
         ax2.legend(loc='upper right')
+
+        ax4 = ax3.twinx()
+        ax3.plot(hot[:,3], hot[:,4],linestyle='solid', marker=".", color="green" ,label='I-V')
+        ax4.plot(hot[:,3], hot[:,5],linestyle='solid', marker=".", color="red", label='HOT')
+        ax4.plot(cold[:,3], cold[:,5],linestyle='solid', marker=".", color="blue", label='COLD')
+        ax3.set_title("yfactor_Hot_Cold_measurement_ch2")
+        ax3.set_xlabel("voltage[mV]")
+        ax3.set_ylabel("current[uA]")
+        ax4.set_ylabel("power[dBm]")
+        ax4.legend(loc='upper right')
+
         plt.savefig("yfactor_{0}.png".format(self.ut))
         plt.show()
 
@@ -92,5 +111,6 @@ if __name__ == "__main__" :
     yf.measure_cold(initv,interval,repeat)
     sys.exit(yf.pv_iv_plot())
 
-#20181129
+#20181204
+#change for tz
 #written by H.Kondo

@@ -19,7 +19,9 @@ class reader(object):
         rospy.Subscriber("sis_vol_ch4", Float64, self.ch4_vol_switch)
         rospy.Subscriber("sis_cur_ch4", Float64, self.ch4_cur_switch)
 
-        rospy.Subscriber("pm_power",Float64, self.power_switch)
+        rospy.Subscriber("pm_power_ch1",Float64, self.ch1_power_switch)
+        rospy.Subscriber("pm_power_ch2",Float64, self.ch2_power_switch)
+
 
 ###data###
 
@@ -47,8 +49,11 @@ class reader(object):
     def ch4_cur_switch(self,q):
         self.ch4_cur = q.data
 
-    def power_switch(self,q):
-        self.power = q.data
+    def ch_1_power_switch(self,q):
+        self.ch1_power = q.data
+
+    def ch_2_power_switch(self,q):
+        self.ch2_power = q.data
 
 ###reader###
 
@@ -66,9 +71,12 @@ class reader(object):
 
     def piv_reader(self):
         ad = []
-        ad.append(self.vol)
-        ad.append(self.cur)
-        ad.append(self.power)
+        ad.append(self.ch1_vol)
+        ad.append(self.ch1_cur)
+        ad.append(self.ch1_power)
+        ad.append(self.ch2_vol)
+        ad.append(self.ch2_cur)
+        ad.append(self.ch2_power)
         return ad
 
 if __name__ == "__main__" :
