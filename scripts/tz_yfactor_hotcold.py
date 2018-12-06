@@ -37,9 +37,9 @@ class yfactor(object):
             da.append(ret[0])
             da.append(ret[1])
             da.append(ret[2])
-            da.appemd(ret[3])
+            da.append(ret[3])
             da.append(ret[4])
-            da.appemd(ret[5])
+            da.append(ret[5])
             print(da)
             da_all.append(da)
             time.sleep(0.01)
@@ -59,9 +59,9 @@ class yfactor(object):
             da.append(ret[0])
             da.append(ret[1])
             da.append(ret[2])
-            da.appemd(ret[3])
+            da.append(ret[3])
             da.append(ret[4])
-            da.appemd(ret[5])
+            da.append(ret[5])
             print(da)
             da_all.append(da)
             time.sleep(0.01)
@@ -93,6 +93,7 @@ class yfactor(object):
 
         plt.savefig("yfactor_{0}.png".format(self.ut))
         plt.show()
+
 
 
 if __name__ == "__main__" :
