@@ -69,20 +69,35 @@ class yfactor(object):
             np.savetxt("yfactor_cold_{0}.txt".format(self.ut), np.array(da_all), delimiter=" ")
 
     def pv_iv_plot(self):
-
-
         hot = np.loadtxt("yfactor_hot_{0}.txt".format(self.ut))
-        fig ,ax1 = plt.subplots()
+        cold = np.loadtxt("yfactor_cold_{0}.txt".format(self.ut))
+        fig ,(ax1, ax3) = plt.subplots(ncols=2)
         ax2 = ax1.twinx()
-        ax1.scatter(hot[:,3], hot[:,4],linestyle='solid', marker=".", color="green" ,label='I-V')
-        ax2.scatter(hot[:,3], hot[:,5],linestyle='solid', marker=".", color="red", label='HOT')
-        ax1.set_title("yfactor_Hot_Cold_measurement")
+        ax1.scatter(hot[:,0], hot[:,1],linestyle='solid', marker=".", color="green" ,label='I-V')
+        ax2.scatter(hot[:,0], hot[:,2],linestyle='solid', marker=".", color="red", label='HOT')
+        ax2.scatter(cold[:,0], cold[:,2],linestyle='solid', marker=".", color="blue", label='COLD')
+        ax1.set_title("yfactor_Hot_Cold_measurement_ch1")
         ax1.set_xlabel("voltage[mV]")
         ax1.set_ylabel("current[uA]")
         ax2.set_ylabel("power[dBm]")
         ax2.legend(loc='upper right')
+
+        ax4 = ax3.twinx()
+        ax3.scatter(hot[:,3], hot[:,4],linestyle='solid', marker=".", color="green" ,label='I-V')
+        ax4.scatter(hot[:,3], hot[:,5],linestyle='solid', marker=".", color="red", label='HOT')
+        ax4.scatter(cold[:,3], cold[:,5],linestyle='solid', marker=".", color="blue", label='COLD')
+        ax3.set_title("yfactor_Hot_Cold_measurement_ch2")
+        ax3.set_xlabel("voltage[mV]")
+        ax3.set_ylabel("current[uA]")
+        ax4.set_ylabel("power[dBm]")
+        ax4.legend(loc='upper right')
+
+        plt.subplots_adjust(wspace=1.0, hspace=1.0)
+
         plt.savefig("yfactor_{0}.png".format(self.ut))
         plt.show()
+
+
 
 if __name__ == "__main__" :
     rospy.init_node("yfactor_hotcold")
@@ -95,7 +110,9 @@ if __name__ == "__main__" :
     input("Are you ready HOT measurement?\n Press enter")
     print("Measuring HOT")
     yf.measure_hot(initv,interval,repeat)
-
+    input("Are you ready COLD measurement?\n Press enter")
+    print("Measuring COLD")
+    yf.measure_cold(initv,interval,repeat)
     sys.exit(yf.pv_iv_plot())
 
 #20181204
