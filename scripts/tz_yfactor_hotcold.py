@@ -82,22 +82,8 @@ class yfactor(object):
         ax2.set_ylabel("power[dBm]")
         ax2.legend(loc='upper right')
 
-"""
-        ax4 = ax3.twinx()
-        ax3.scatter(hot[:,3], hot[:,4],linestyle='solid', marker=".", color="green" ,label='I-V')
-        ax4.scatter(hot[:,3], hot[:,5],linestyle='solid', marker=".", color="red", label='HOT')
-        ax4.scatter(cold[:,3], cold[:,5],linestyle='solid', marker=".", color="blue", label='COLD')
-        ax3.set_title("yfactor_Hot_Cold_measurement_ch2")
-        ax3.set_xlabel("voltage[mV]")
-        ax3.set_ylabel("current[uA]")
-        ax4.set_ylabel("power[dBm]")
-        ax4.legend(loc='upper right')
-
-        plt.subplots_adjust(wspace=1.0, hspace=1.0)
-"""
         plt.savefig("yfactor_{0}.png".format(self.ut))
         plt.show()
-
 
 
 if __name__ == "__main__" :
@@ -111,11 +97,7 @@ if __name__ == "__main__" :
     input("Are you ready HOT measurement?\n Press enter")
     print("Measuring HOT")
     yf.measure_hot(initv,interval,repeat)
-"""
-    input("Are you ready COLD measurement?\n Press enter")
-    print("Measuring COLD")
-    yf.measure_cold(initv,interval,repeat)
-"""
+
     sys.exit(yf.pv_iv_plot())
 
 #20181204
