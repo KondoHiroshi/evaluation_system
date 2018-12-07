@@ -71,7 +71,7 @@ class yfactor(object):
     def pv_iv_plot(self):
         hot = np.loadtxt("yfactor_hot_{0}.txt".format(self.ut))
         cold = np.loadtxt("yfactor_cold_{0}.txt".format(self.ut))
-        fig ,(ax1, ax3) = plt.subplots(ncols=2, figsize=(10,4))
+        fig ,(ax1, ax3) = plt.subplots(ncols=2, figsize=(10,8))
         ax2 = ax1.twinx()
         ax1.scatter(hot[:,0], hot[:,1],linestyle='solid', marker=".", color="green" ,label='I-V')
         ax2.scatter(hot[:,0], hot[:,2],linestyle='solid', marker=".", color="red", label='HOT')
