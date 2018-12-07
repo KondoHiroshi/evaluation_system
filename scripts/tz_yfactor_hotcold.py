@@ -95,7 +95,6 @@ class yfactor(object):
 
         plt.subplots_adjust(wspace=1.0, hspace=1.0)
 """
-
         plt.savefig("yfactor_{0}.png".format(self.ut))
         plt.show()
 
