@@ -69,21 +69,20 @@ class yfactor(object):
             np.savetxt("yfactor_cold_{0}.txt".format(self.ut), np.array(da_all), delimiter=" ")
 
     def pv_iv_plot(self):
-        hot = np.loadtxt("yfactor_hot_{0}.txt".format(self.ut))
-        fig ,ax1 = plt.subplots(ncols=2)
 
+
+        hot = np.loadtxt("yfactor_hot_{0}.txt".format(self.ut))
+        fig ,ax1 = plt.subplots()
         ax2 = ax1.twinx()
         ax1.scatter(hot[:,0], hot[:,1],linestyle='solid', marker=".", color="green" ,label='I-V')
         ax2.scatter(hot[:,0], hot[:,2],linestyle='solid', marker=".", color="red", label='HOT')
-        ax1.set_title("yfactor_Hot_Cold_measurement_ch1")
+        ax1.set_title("yfactor_Hot_Cold_measurement")
         ax1.set_xlabel("voltage[mV]")
         ax1.set_ylabel("current[uA]")
         ax2.set_ylabel("power[dBm]")
         ax2.legend(loc='upper right')
-
         plt.savefig("yfactor_{0}.png".format(self.ut))
         plt.show()
-
 
 if __name__ == "__main__" :
     rospy.init_node("yfactor_hotcold")
