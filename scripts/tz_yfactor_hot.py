@@ -43,10 +43,10 @@ class yfactor(object):
             print(da)
             da_all.append(da)
             time.sleep(0.01)
-            np.savetxt("yfactor_hot_{0}.txt".format(self.ut), np.array(da_all), delimiter=" ")
+            np.savetxt("yfactor_hot_{0}_{1}.txt".format(self.ut,save_name), np.array(da_all), delimiter=" ")
 
     def pv_iv_plot(self):
-        hot = np.loadtxt("yfactor_hot_{0}.txt".format(self.ut))
+        hot = np.loadtxt("yfactor_hot_{0}_{1}.txt".format(self.ut,save_name))
         fig ,(ax1, ax3) = plt.subplots(ncols=2, figsize=(12,4))
         ax2 = ax1.twinx()
         ax1.scatter(hot[:,0], hot[:,1],linestyle='solid', marker=".", color="green" ,label='I-V')
@@ -68,7 +68,7 @@ class yfactor(object):
 
         plt.subplots_adjust(wspace=1.0, hspace=1.0)
 
-        plt.savefig("yfactor_{0}.png".format(self.ut))
+        plt.savefig("yfactor_hot_{0}_{1}.png".format(self.ut,save_name))
         plt.show()
 
 
@@ -80,6 +80,7 @@ if __name__ == "__main__" :
     initv = int(input("start_voltage = ? [mV]"))
     lastv = int(input("finish_voltage = ? [mV]"))
     interval = float(input("interval_voltage = ? [mV]"))
+    name = int(input("save_name="))
     repeat = int((lastv-initv)/interval)
     input("Are you ready HOT measurement?\n Press enter")
     print("Measuring HOT")

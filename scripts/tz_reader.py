@@ -74,8 +74,8 @@ class reader(object):
         ad.append(self.ch1_vol)
         ad.append(self.ch1_cur)
         ad.append(self.ch1_power)
-        ad.append(self.ch2_vol)
-        ad.append(self.ch2_cur)
+        ad.append(self.ch4_vol)
+        ad.append(self.ch4_cur)
         ad.append(self.ch2_power)
         return ad
 
