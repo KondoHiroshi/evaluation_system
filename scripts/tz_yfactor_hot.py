@@ -80,7 +80,7 @@ if __name__ == "__main__" :
     initv = int(input("start_voltage = ? [mV]"))
     lastv = int(input("finish_voltage = ? [mV]"))
     interval = float(input("interval_voltage = ? [mV]"))
-    name = int(input("save_name="))
+    save_name = str(input("save_name="))
     repeat = int((lastv-initv)/interval)
     input("Are you ready HOT measurement?\n Press enter")
     print("Measuring HOT")
