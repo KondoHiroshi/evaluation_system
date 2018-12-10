@@ -19,8 +19,8 @@ class yfactor(object):
 
         self.pub_vol_ch1 = rospy.Publisher("sis_vol_cmd_ch1", Float64, queue_size=1)
         self.pub_vol_ch2 = rospy.Publisher("sis_vol_cmd_ch2", Float64, queue_size=1)
-        self.pub_vol_ch3 = rospy.Publisher("sis_vol_cmd_ch2", Float64, queue_size=1)
-        self.pub_vol_ch4 = rospy.Publisher("sis_vol_cmd_ch2", Float64, queue_size=1)
+        self.pub_vol_ch3 = rospy.Publisher("sis_vol_cmd_ch3", Float64, queue_size=1)
+        self.pub_vol_ch4 = rospy.Publisher("sis_vol_cmd_ch4", Float64, queue_size=1)
 
         self.t = datetime.datetime.now()
         self.ut = self.t.strftime("%Y%m%d-%H%M%S")
