@@ -46,7 +46,7 @@ class yfactor(object):
             print(da)
             da_all.append(da)
             time.sleep(0.01)
-            np.savetxt("yfactor_hot_{0}.txt".format(self.ut), np.array(da_all), delimiter=" ")
+        np.savetxt("yfactor_hot_{0}.txt".format(self.ut), np.array(da_all), delimiter=" ")
 
     def measure_cold(self, initv, interval, repeat):
         da_all = []
@@ -69,7 +69,7 @@ class yfactor(object):
             print(da)
             da_all.append(da)
             time.sleep(0.01)
-            np.savetxt("yfactor_cold_{0}.txt".format(self.ut), np.array(da_all), delimiter=" ")
+        np.savetxt("yfactor_cold_{0}.txt".format(self.ut), np.array(da_all), delimiter=" ")
 
     def pv_iv_plot(self):
         hot = np.loadtxt("yfactor_hot_{0}.txt".format(self.ut))

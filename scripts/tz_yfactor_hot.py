@@ -48,7 +48,7 @@ class yfactor(object):
             print(da)
             da_all.append(da)
             time.sleep(0.01)
-            np.savetxt("yfactor_hot_{0}_{1}.txt".format(self.ut,save_name), np.array(da_all), delimiter=" ")
+        np.savetxt("yfactor_hot_{0}_{1}.txt".format(self.ut,save_name), np.array(da_all), delimiter=" ")
 
     def pv_iv_plot(self):
         hot = np.loadtxt("yfactor_hot_{0}_{1}.txt".format(self.ut,save_name))

@@ -50,7 +50,7 @@ class sis_iv(object):
             print(da)
             da_all.append(da)
             time.sleep(0.01)
-            np.savetxt("sis_iv_{0}.txt".format(self.ut), np.array(da_all), delimiter=" ")
+        np.savetxt("sis_iv_{0}.txt".format(self.ut), np.array(da_all), delimiter=" ")
         iv.iv_plot()
 
 
