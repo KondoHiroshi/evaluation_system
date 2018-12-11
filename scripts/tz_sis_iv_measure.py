@@ -27,6 +27,11 @@ class sis_iv(object):
 
     def measure(self, initv, interval, repeat):
         da_all = []
+        self.pub_vol_ch1.publish(initv)
+        self.pub_vol_ch2.publish(initv)
+        self.pub_vol_ch3.publish(initv)
+        self.pub_vol_ch4.publish(initv)
+        time.sleep(0.1)
         for i in range(repeat+1):
             da = []
             vol = initv+interval*i
