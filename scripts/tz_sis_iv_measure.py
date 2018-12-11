@@ -41,7 +41,7 @@ class sis_iv(object):
             self.pub_vol_ch2.publish(vol)
             self.pub_vol_ch3.publish(vol)
             self.pub_vol_ch4.publish(vol)
-            time.sleep(0.05)
+            time.sleep(0.1)
             ret = reader.iv_reader()
             time.sleep(0.01)
             da.append(ret[0])
