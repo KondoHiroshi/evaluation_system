@@ -29,7 +29,7 @@ class sis_iv(object):
             vol = initv+interval*i
             msg = Float64()
             msg.data = vol
-            self.pub_vol.publish(vol)
+            self.pub_vol.publish(msg)
             time.sleep(0.1)
             ret = reader.iv_reader()
             time.sleep(0.01)

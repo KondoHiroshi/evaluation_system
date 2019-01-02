@@ -35,8 +35,8 @@ class yfactor(object):
             vol = initv+interval*i
             msg = Float64()
             msg.data = vol
-            self.pub_vol_ch1.publish(vol)
-            self.pub_vol_ch4.publish(vol)
+            self.pub_vol_ch1.publish(msg)
+            self.pub_vol_ch4.publish(msg)
             time.sleep(0.1)
             ret = reader.piv_reader()
             time.sleep(0.01)
