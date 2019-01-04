@@ -86,14 +86,17 @@ if __name__ == "__main__" :
     rospy.init_node("yfactor_hotcold")
     reader = tz_reader.reader()
     yf = yfactor()
+
     initv = int(input("start_voltage = ? [mV]"))
     lastv = int(input("finish_voltage = ? [mV]"))
     interval = float(input("interval_voltage = ? [mV]"))
     save_name = str(input("save_name="))
     repeat = int((lastv-initv)/interval)
+
     input("Are you ready HOT measurement?\n Press enter")
     print("Measuring HOT")
     yf.measure_hot(initv,interval,repeat)
+
     sys.exit(yf.pv_iv_plot())
 
 #20181204

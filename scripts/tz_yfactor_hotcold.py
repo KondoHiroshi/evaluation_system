@@ -49,7 +49,7 @@ class yfactor(object):
             print(da)
             da_all.append(da)
             time.sleep(0.01)
-        np.savetxt("yfactor_hot_{0}.txt".format(self.ut), np.array(da_all), delimiter=" ")
+        np.savetxt("yfactor_hot_{0}_{1}.txt".format(self.ut,save_name), np.array(da_all), delimiter=" ")
 
     def measure_cold(self, initv, interval, repeat):
         da_all = []
@@ -75,11 +75,12 @@ class yfactor(object):
             print(da)
             da_all.append(da)
             time.sleep(0.01)
-        np.savetxt("yfactor_cold_{0}.txt".format(self.ut), np.array(da_all), delimiter=" ")
+        np.savetxt("yfactor_cold_{0}_{1}.txt".format(self.ut,save_name), np.array(da_all), delimiter=" ")
 
     def pv_iv_plot(self):
-        hot = np.loadtxt("yfactor_hot_{0}.txt".format(self.ut))
-        cold = np.loadtxt("yfactor_cold_{0}.txt".format(self.ut))
+        hot = np.loadtxt("yfactor_hot_{0}_{1}.txt".format(self.ut,save_name))
+        cold = np.loadtxt("yfactor_cold_{0}_{1}.txt".format(self.ut,save_name))
+
         fig ,(ax1, ax3) = plt.subplots(ncols=2, figsize=(12,4))
         ax2 = ax1.twinx()
         ax1.plot(hot[:,0], hot[:,1],linestyle='solid', color="green" ,label='I-V')
@@ -115,13 +116,17 @@ if __name__ == "__main__" :
     initv = int(input("start_voltage = ? [mV]"))
     lastv = int(input("finish_voltage = ? [mV]"))
     interval = float(input("interval_voltage = ? [mV]"))
+    save_name = str(input("save_name="))
     repeat = int((lastv-initv)/interval)
+
     input("Are you ready HOT measurement?\n Press enter")
     print("Measuring HOT")
     yf.measure_hot(initv,interval,repeat)
+
     input("Are you ready COLD measurement?\n Press enter")
     print("Measuring COLD")
     yf.measure_cold(initv,interval,repeat)
+
     sys.exit(yf.pv_iv_plot())
 
 #20181204

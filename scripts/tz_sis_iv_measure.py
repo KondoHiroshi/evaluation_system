@@ -55,12 +55,12 @@ class sis_iv(object):
             print(da)
             da_all.append(da)
             time.sleep(0.01)
-        np.savetxt("sis_iv_{0}.txt".format(self.ut), np.array(da_all), delimiter=" ")
+        np.savetxt("sis_iv_{0}.txt".format(self.ut,save_name), np.array(da_all), delimiter=" ")
         iv.iv_plot()
 
 
     def iv_plot(self):
-        iv = np.loadtxt("sis_iv_{0}.txt".format(self.ut))
+        iv = np.loadtxt("sis_iv_{0}.txt".format(self.ut,save_name))
 
         plt.figure()
         plt.subplot(221)
@@ -92,7 +92,7 @@ class sis_iv(object):
         plt.grid(True)
 
         plt.subplots_adjust(wspace=0.4, hspace=0.6)
-        plt.savefig("sis_iv_{0}.png".format(self.ut))
+        plt.savefig("sis_iv_{0}.png".format(self.ut,save_name))
         plt.show()
 
 if __name__ == "__main__" :
@@ -102,6 +102,8 @@ if __name__ == "__main__" :
     initv = int(input("start_voltage = ? [mV]"))
     lastv = int(input("finish_voltage = ? [mV]"))
     interval = float(input("interval_voltage = ? [mV]"))
+    save_name = str(input("save_name="))
+
     repeat = int((lastv-initv)/interval)
     sys.exit(iv.measure(initv,interval,repeat))
 
