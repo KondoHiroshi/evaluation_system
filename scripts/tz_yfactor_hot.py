@@ -82,7 +82,6 @@ class yfactor(object):
         plt.show()
 
 
-
 if __name__ == "__main__" :
     rospy.init_node("yfactor_hotcold")
     reader = tz_reader.reader()
